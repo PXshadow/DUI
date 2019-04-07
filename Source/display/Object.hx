@@ -15,10 +15,13 @@ class Object extends Sprite
 {
     public var bitmapRect:Rectangle;
     public var graphicRect:Rectangle;
+    public var bool:Bool = false;
     @:isVar public var bitmapData(get,set):BitmapData;
     function set_bitmapData(value:BitmapData):BitmapData
     {
+        if(value == null) return null;
         bitmapData = value;
+        cacheAsBitmap = true;
         var mat = new Matrix();
         var sx:Float = 1;
 	    var sy:Float = 1;
@@ -38,13 +41,19 @@ class Object extends Sprite
     {
         super();
         mouseEnabled = false;
-        bitmapRect = new Rectangle();
-        graphicRect = new Rectangle();
+        clear();
     }
     public function fill(color:UInt=0xFFFFFF,alpha:Float=1)
     {
         graphics.beginFill(color,alpha);
         graphics.drawRect(0,0,width,height);
+    }
+    public function clear()
+    {
+        graphics.clear();
+        bitmapData = null;
+        graphicRect = new Rectangle();
+        bitmapRect = new Rectangle();
     }
     public function setSvg(data:String)
     {
