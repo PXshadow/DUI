@@ -1,5 +1,6 @@
 package;
 
+import haxe.Timer;
 import openfl.display.Sprite;
 
 class Main extends Sprite
@@ -9,6 +10,12 @@ class Main extends Sprite
 		super();
 		//testing
 		var obj = new display.Object();
+		var tim = new Timer(1000);
+		tim.run = function()
+		{
+			obj.scaleX += 0.1;
+			obj.scaleY += 0.1;
+		}
 		Load.loadBitmapData("assets/openfl.png",obj);
 		Load.loadSvg("assets/alpha.svg",obj);
 		addChild(obj);

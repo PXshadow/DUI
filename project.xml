@@ -6,4 +6,5 @@
 	<haxelib name="svg"/>
 	<haxelib name="actuate"/>
 	<assets path="assets"/>
+	<define name="openfl-disable-graphics-upscaling"/>
 </project>
