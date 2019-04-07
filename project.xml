@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<source path="Source" />
+	<!--Libaries-->
+	<haxelib name="openfl" />
+	<haxelib name="svg"/>
+	<haxelib name="actuate"/>
+</project>
