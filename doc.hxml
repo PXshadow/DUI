@@ -1,0 +1,8 @@
+-cp Source
+-D doc-gen
+--macro include('pack')
+--no-output
+--each 
+
+--next
+-xml docs/neko.html
