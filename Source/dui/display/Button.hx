@@ -1,4 +1,4 @@
-package display;
+package dui.display;
 
 import openfl.events.MouseEvent;
 import openfl.display.InteractiveObject;

@@ -1,7 +1,8 @@
+package dui;
 import openfl.display.BitmapData;
-import display.Object;
+import dui.display.Object;
 import openfl.utils.Assets;
-import text.Text;
+import dui.text.Text;
 class Load
 {
     public static function loadBitmapData(id:String,object:Object)

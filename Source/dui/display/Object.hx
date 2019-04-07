@@ -1,4 +1,4 @@
-package display;
+package dui.display;
 
 import lime.app.Future;
 import openfl.geom.Rectangle;
@@ -68,8 +68,8 @@ class Object extends Sprite
             },true);
             future.onComplete(function(_)
             {
-            invalidate();
-            future = null;
+                invalidate();
+                future = null;
             });
         }else{
             trace("active");

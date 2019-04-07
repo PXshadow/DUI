@@ -1,4 +1,4 @@
-package text;
+package dui.text;
 
 import openfl.text.TextFormatAlign;
 import openfl.text.TextFormat;
