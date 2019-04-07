@@ -5,4 +5,5 @@
 	<haxelib name="openfl" />
 	<haxelib name="svg"/>
 	<haxelib name="actuate"/>
+	<assets path="assets"/>
 </project>
