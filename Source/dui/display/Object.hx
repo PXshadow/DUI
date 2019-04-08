@@ -17,7 +17,6 @@ class Object extends Sprite
     public var bitmapRect:Rectangle;
     public var graphicRect:Rectangle;
     public var bool:Bool = false;
-    public var future:Future<Void>;
     @:isVar public var bitmapData(get,set):BitmapData;
     function set_bitmapData(value:BitmapData):BitmapData
     {
@@ -59,20 +58,7 @@ class Object extends Sprite
     }
     public function setSvg(data:String)
     {
-        if(future == null)
-        {
-            future = new Future(function()
-            {
-                graphics.endFill();
-                new SVG(data).render(graphics,graphicRect.x,graphicRect.y,graphicRect.width > 0 ? Std.int(graphicRect.width) : -1,graphicRect.height > 0 ? Std.int(graphicRect.height) : -1);
-            },true);
-            future.onComplete(function(_)
-            {
-                invalidate();
-                future = null;
-            });
-        }else{
-            trace("active");
-        }
+        graphics.endFill();
+         new SVG(data).render(graphics,graphicRect.x,graphicRect.y,graphicRect.width > 0 ? Std.int(graphicRect.width) : -1,graphicRect.height > 0 ? Std.int(graphicRect.height) : -1);
     }
 }
