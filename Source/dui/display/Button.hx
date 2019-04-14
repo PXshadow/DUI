@@ -31,6 +31,7 @@ class Button extends Object
 		if(Click != null)addEventListener(MouseEvent.CLICK, Click);
 		if(Over != null)addEventListener(MouseEvent.MOUSE_OVER, Over);
         if (Move != null)addEventListener(MouseEvent.MOUSE_MOVE,Move);
+        if (Out != null)addEventListener(MouseEvent.MOUSE_OUT,Out);
     }
     private function removeFromStage(_)
     {
@@ -41,5 +42,6 @@ class Button extends Object
 		if(Click != null)removeEventListener(MouseEvent.CLICK, Click);
 		if(Over != null)removeEventListener(MouseEvent.MOUSE_OVER, Over);
         if (Move != null)removeEventListener(MouseEvent.MOUSE_MOVE,Move);
+        if (Out != null)removeEventListener(MouseEvent.MOUSE_OUT,Out);
     }
 }
