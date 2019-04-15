@@ -12,7 +12,7 @@ import openfl.Assets;
 import openfl.display.Graphics;
 import openfl.display.DisplayObjectContainer;
 import UInt;
-class Object extends DisplayObjectContainer
+class Object extends Sprite
 {
     public var bitmapRect:Rectangle;
     public var graphicRect:Rectangle;
