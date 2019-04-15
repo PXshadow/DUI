@@ -14,35 +14,16 @@ import openfl.display.DisplayObjectContainer;
 import UInt;
 class Object extends Sprite
 {
-    public var bitmapRect:Rectangle;
     public var graphicRect:Rectangle;
     public var bool:Bool = false;
     public var shape:Shape;
-    @:isVar public var bitmapData(get,set):BitmapData;
-    function set_bitmapData(value:BitmapData):BitmapData
-    {
-        if(value == null) return null;
-        bitmapData = value;
-        cacheAsBitmap = true;
-        var mat = new Matrix();
-        var sx:Float = 1;
-	    var sy:Float = 1;
-	    if(bitmapRect.width > 0) sx = 1 / bitmapData.width * bitmapRect.width;
-	    if(bitmapRect.height > 0) sy = 1 / bitmapData.height * bitmapRect.height;
-        mat.scale(sx,sy);
-        mat.translate(bitmapRect.x,bitmapRect.y);
-        shape.graphics.beginBitmapFill(bitmapData,mat,true,true);
-        shape.graphics.drawRect(bitmapRect.x,bitmapRect.y,sx * bitmapData.width,sy * bitmapData.height);
-        return bitmapData;
-    }
-    function get_bitmapData():BitmapData
-    {
-        return bitmapData;
-    }
+    public var bitmap:Bitmap;
     public function new()
     {
         super();
         mouseEnabled = false;
+        bitmap = new Bitmap();
+        addChild(bitmap);
         shape = new Shape();
         shape.cacheAsBitmap = true;
         addChild(shape);
@@ -50,15 +31,14 @@ class Object extends Sprite
     }
     public function fill(color:UInt=0xFFFFFF,alpha:Float=1)
     {
-        shape.graphics.beginFill(color,alpha);
-        shape.graphics.drawRect(0,0,width,height);
+        graphics.beginFill(color,alpha);
+        graphics.drawRect(0,0,width,height);
     }
     public function clear()
     {
         shape.graphics.clear();
-        bitmapData = null;
+        bitmap.bitmapData = null;
         graphicRect = new Rectangle();
-        bitmapRect = new Rectangle();
     }
     public function setSvg(data:String)
     {
