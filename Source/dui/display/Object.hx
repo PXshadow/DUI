@@ -12,11 +12,12 @@ import openfl.Assets;
 import openfl.display.Graphics;
 import openfl.display.DisplayObjectContainer;
 import UInt;
-class Object extends Sprite
+class Object extends DisplayObjectContainer
 {
     public var bitmapRect:Rectangle;
     public var graphicRect:Rectangle;
     public var bool:Bool = false;
+    public var shape:Shape;
     @:isVar public var bitmapData(get,set):BitmapData;
     function set_bitmapData(value:BitmapData):BitmapData
     {
@@ -30,8 +31,8 @@ class Object extends Sprite
 	    if(bitmapRect.height > 0) sy = 1 / bitmapData.height * bitmapRect.height;
         mat.scale(sx,sy);
         mat.translate(bitmapRect.x,bitmapRect.y);
-        graphics.beginBitmapFill(bitmapData,mat,true,true);
-        graphics.drawRect(bitmapRect.x,bitmapRect.y,sx * bitmapData.width,sy * bitmapData.height);
+        shape.graphics.beginBitmapFill(bitmapData,mat,true,true);
+        shape.graphics.drawRect(bitmapRect.x,bitmapRect.y,sx * bitmapData.width,sy * bitmapData.height);
         return bitmapData;
     }
     function get_bitmapData():BitmapData
@@ -42,23 +43,26 @@ class Object extends Sprite
     {
         super();
         mouseEnabled = false;
+        shape = new Shape();
+        shape.cacheAsBitmap = true;
+        addChild(shape);
         clear();
     }
     public function fill(color:UInt=0xFFFFFF,alpha:Float=1)
     {
-        graphics.beginFill(color,alpha);
-        graphics.drawRect(0,0,width,height);
+        shape.graphics.beginFill(color,alpha);
+        shape.graphics.drawRect(0,0,width,height);
     }
     public function clear()
     {
-        graphics.clear();
+        shape.graphics.clear();
         bitmapData = null;
         graphicRect = new Rectangle();
         bitmapRect = new Rectangle();
     }
     public function setSvg(data:String)
     {
-        graphics.endFill();
-         new SVG(data).render(graphics,graphicRect.x,graphicRect.y,graphicRect.width > 0 ? Std.int(graphicRect.width) : -1,graphicRect.height > 0 ? Std.int(graphicRect.height) : -1);
+        shape.graphics.endFill();
+        new SVG(data).render(shape.graphics,graphicRect.x,graphicRect.y,graphicRect.width > 0 ? Std.int(graphicRect.width) : -1,graphicRect.height > 0 ? Std.int(graphicRect.height) : -1);
     }
 }
